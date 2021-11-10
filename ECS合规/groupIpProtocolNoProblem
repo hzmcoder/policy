@@ -1,0 +1,16 @@
+package accurics
+
+##ruleName groupIpProtocolNoProblem
+##policyType alicloud
+##resourceType alicloud_security_group_rule
+
+groupIpProtocolNoProblem[input.alicloud_security_group_rule[_].id] {
+  not checkIpProtocol
+}
+checkIpProtocol {
+	rule := input.alicloud_security_group_rule[_]
+  config := rule.config
+  ip_protocol := {"tcp","udp","icmp","gre","all"}
+  some i
+  config.ip_protocol == ip_protocol[i]
+}

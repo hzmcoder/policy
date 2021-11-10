@@ -1,0 +1,10 @@
+package accurics
+
+##ruleName mnsTopicMaxSize
+##resourceType mnsTopicMaxSize
+##policyType alicloud
+
+mnsTopicMaxSize[input.alicloud_mns_topic[_].id]{
+   input.alicloud_mns_topic[_].config.maximum_message_size > 2048
+}
+

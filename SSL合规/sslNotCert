@@ -1,0 +1,11 @@
+package accurics
+
+##ruleName sslNotCert
+##policyType alicloud
+##resourceType alicloud_ssl_certificates_service_certificate
+
+sslNotCert[ssl.id]{
+  ssl := input.alicloud_ssl_certificates_service_certificate[_]
+  config := ssl.config
+  not config.cert
+}

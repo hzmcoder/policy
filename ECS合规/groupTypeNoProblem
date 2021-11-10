@@ -1,0 +1,16 @@
+package accurics
+
+##ruleName groupTypeNoProblem
+##policyType alicloud
+##resourceType alicloud_security_group_rule
+
+groupTypeNoProblem[input.alicloud_security_group_rule[_].id] {
+  not checkType
+}
+checkType {
+	rule := input.alicloud_security_group_rule[_]
+  config := rule.config
+  type := {"ingress","egress"}
+  some i
+  config.type == type[i]
+}
